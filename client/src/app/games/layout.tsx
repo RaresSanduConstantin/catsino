@@ -9,11 +9,8 @@ export default function RootLayout({
 }) {
   // offset navbar height
   return (
-    <div className="relative h-screen flex  overflow-x-hidden">
-   
-        <section className="md:mt-28">{children}</section>
-   
-      
+    <div>
+   {children}
     </div>
   );
 }

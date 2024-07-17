@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+import GamesCarousel from '@/components/GamesCarousel';
+import GameList from '@/components/GameList';
 
 export const metadata: Metadata = {
   title: "Leaderboard | Catsino",
@@ -9,8 +11,10 @@ export const metadata: Metadata = {
 
 const Games = () => {
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 '>
-      games
+    <div className='mt-20 md:mt-0 flex flex-col w-full'>
+      <GamesCarousel />
+      <p className="text-4xl font-semibold flex items-center mt-10 md:ml-20">Try out all our slots</p>
+      <GameList />
     </div>
   );
 };

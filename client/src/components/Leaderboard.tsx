@@ -57,8 +57,8 @@ const LeaderboardComponent = () => {
       <ul className="divide-y divide-gray-200 w-full ">
         {users.map((user, index) => {
           const catImage = catImages.length > index ? catImages[index].url : 'https://via.placeholder.com/150';
-          const backgroundClass = index === 0 ? 'bg-yellow-300 '
-                                : index === 1 ? 'bg-gray-300'
+          const backgroundClass = index === 0 ? 'bg-yellow-300'
+                                : index === 1 ? 'bg-gray-500'
                                 : index === 2 ? 'bg-orange-300' : '';
           return (
             <li key={user.id} className={`flex items-center justify-between py-4 px-6 ${backgroundClass}`}>
