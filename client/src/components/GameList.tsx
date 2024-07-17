@@ -35,7 +35,7 @@ const GameList = () => {
     }, []);
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 px-16 py-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 px-16 pt-20">
             {games.map(game => <Game key={game.id} game={game} />)}
         </div>
     );
