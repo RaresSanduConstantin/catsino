@@ -1,3 +1,4 @@
+import { SignupComponent } from '@/components/Signup';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,8 +10,9 @@ export const metadata: Metadata = {
 
 const Signup = () => {
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 '>
-      Signup
+    <div className=''>
+
+      <SignupComponent />
     </div>
   );
 };

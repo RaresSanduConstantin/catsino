@@ -1,3 +1,4 @@
+import { LoginComponent } from '@/components/Login';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,8 +10,9 @@ export const metadata: Metadata = {
 
 const Login = () => {
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 '>
-      Login
+    <div className=''>
+
+      <LoginComponent />
     </div>
   );
 };
