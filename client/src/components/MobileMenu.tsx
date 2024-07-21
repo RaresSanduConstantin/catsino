@@ -1,6 +1,7 @@
-
+"use client"
 import { AlignJustify, Cat, Club, PawPrint, Trophy } from 'lucide-react'
 import Link from 'next/link'
+import { useSession, signOut } from 'next-auth/react';
 
 import {
   Sheet,
@@ -13,6 +14,7 @@ import {
 
 
 const MobileMenu = () => {
+  const { data: session, status } = useSession();
  
 
   return (
@@ -66,19 +68,32 @@ const MobileMenu = () => {
         <SheetFooter className='pt-20'>
 
         <div className='flex gap-10 items-center justify-center'>
-                    <Link
-                        href='/login'
-                        className='border border-yellow-400 rounded-full px-7 py-2'
+        {status === 'authenticated' ? (
+                    <div className='flex flex-col items-center gap-4'>
+                    <span className="text-center flex flex-col ">Welcome <span className='bg-yellow-500 p-1 rounded-md'>{session?.user?.email}</span></span>
+                    <button
+                        onClick={() => signOut()}
+                        className="border border-yellow-400 rounded-full px-5 py-2 hover:bg-yellow-500"
                     >
-                        Login
-                    </Link>
-                    <Link
-                        href='/signup'
-                        className='border bg-red-500 border-red-500 font-bold rounded-full px-5 py-2'
-                    >
-                        Signup
-                    </Link>
+                        Logout
+                    </button>
                 </div>
+                ) : (
+                    <>           <Link
+                    href='/login'
+                    className='border border-yellow-400 rounded-full px-5 py-2'
+                >
+                    Login
+                </Link>
+                <Link
+                    href='/signup'
+                    className='border bg-red-500 border-red-500 font-bold rounded-full px-5 py-2'
+                >
+                    Signup
+                </Link>
+                </>
+                )}
+          </div>
 
 </SheetFooter>
 

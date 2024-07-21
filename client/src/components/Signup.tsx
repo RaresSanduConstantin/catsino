@@ -1,6 +1,19 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import React from 'react';
+import { useForm } from "react-hook-form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input";
+import Link from "next/link";
+import { Cat } from "lucide-react";
+
+import { FormEvent, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { register } from "@/actions/register";
+import { signIn } from 'next-auth/react';
 
 const FormSchema = z.object({
     username: z.string().min(2, { message: "Username must be at least 2 characters." }),
@@ -13,19 +26,14 @@ const FormSchema = z.object({
 });
 
 
-
-
-import React from 'react';
-import { useForm } from "react-hook-form";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
-import Link from "next/link";
-import { Cat } from "lucide-react";
-
 export function SignupComponent() {
-    const form = useForm({
+
+    const [error, setError] = useState<string>();
+    const router = useRouter();
+    const ref = useRef<HTMLFormElement>(null);
+
+
+    const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
             username: "",
@@ -35,11 +43,39 @@ export function SignupComponent() {
         },
     });
 
-    function onSubmit(data: any) {
-        toast({
-            title: "Account Created Successfully!",
-            description: `Welcome, ${data.username}!`,
+
+    const onSubmit = async (formData: z.infer<typeof FormSchema>) => {
+        console.log('formData', formData);
+        const r = await register({
+            email: formData.email,
+            password: formData.password,
+            username: formData.username
         });
+        ref.current?.reset();
+        if (r?.error) {
+            console.log(r?.error);
+            form.setError("email", {
+                type: "manual",
+                message: r?.error,
+            });
+        } else {
+            // Automatically sign in the user after registration
+            const result = await signIn('credentials', {
+                email: formData.email,
+                password: formData.password,
+                redirect: false, // Prevent redirect to avoid page refresh
+            });
+            if (result?.ok) {
+                // Redirect user after successful login
+                router.push("/");
+            } else if (result?.error) {
+                // Handle errors if login fails
+                form.setError("email", {
+                    type: "manual",
+                    message: result?.error
+                });
+            }
+        }
     }
 
     return (
@@ -60,6 +96,7 @@ export function SignupComponent() {
                                 <FormControl>
                                     <Input placeholder="Your username" {...field} className="text-black" />
                                 </FormControl>
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
@@ -72,6 +109,11 @@ export function SignupComponent() {
                                 <FormControl>
                                     <Input type="email" placeholder="Your email" {...field} className="text-black" />
                                 </FormControl>
+                                <FormDescription>
+                                    Enter your unique email.
+                                </FormDescription>
+                                <FormMessage />
+
                             </FormItem>
                         )}
                     />
@@ -84,6 +126,8 @@ export function SignupComponent() {
                                 <FormControl>
                                     <Input type="password" placeholder="Your password" {...field} className="text-black" />
                                 </FormControl>
+                                <FormMessage />
+
                             </FormItem>
                         )}
                     />
@@ -96,6 +140,8 @@ export function SignupComponent() {
                                 <FormControl>
                                     <Input type="password" placeholder="Confirm your password" {...field} className="text-black" />
                                 </FormControl>
+                                <FormMessage />
+
                             </FormItem>
                         )}
                     />

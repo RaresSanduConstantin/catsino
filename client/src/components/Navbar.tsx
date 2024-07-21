@@ -1,9 +1,12 @@
+"use client"
 import Link from 'next/link'
 import { Cat, Club, Trophy, PawPrint } from 'lucide-react'
 import MobileMenu from './MobileMenu'
+import { useSession, signOut } from 'next-auth/react';
 
 
 const Navbar = () => {
+    const { data: session, status } = useSession();
 
     return (
         <div className='fixed backdrop-blur-sm bg-gray-950 z-50 top-0 left-0 right-0 h-20 shadow-sm flex items-center justify-between border border-r-0 border-t-0 border-l-0 border-gray-400'>
@@ -43,18 +46,32 @@ const Navbar = () => {
                 </div>
 
                 <div className='hidden lg:flex gap-10 justify-end pr-10 w-1/4 '>
-                    <Link
-                        href='/login'
-                        className='border border-yellow-400 rounded-full px-5 py-2'
+                {status === 'authenticated' ? (
+                    <div className='flex items-center gap-4'>
+                    <span className="text-center flex flex-col ">Welcome <span className='bg-yellow-500 p-1 rounded-md'>{session?.user?.email}</span></span>
+                    <button
+                        onClick={() => signOut()}
+                        className="border border-yellow-400 rounded-full px-5 py-2 hover:bg-yellow-500"
                     >
-                        Login
-                    </Link>
-                    <Link
-                        href='/signup'
-                        className='border bg-red-500 border-red-500 font-bold rounded-full px-5 py-2'
-                    >
-                        Signup
-                    </Link>
+                        Logout
+                    </button>
+                </div>
+                ) : (
+                    <>           <Link
+                    href='/login'
+                    className='border border-yellow-400 rounded-full px-5 py-2'
+                >
+                    Login
+                </Link>
+                <Link
+                    href='/signup'
+                    className='border bg-red-500 border-red-500 font-bold rounded-full px-5 py-2'
+                >
+                    Signup
+                </Link>
+                </>
+                )}
+         
                 </div>
 
        

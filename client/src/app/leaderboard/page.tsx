@@ -1,4 +1,4 @@
-import LeaderboardComponent from '@/components/Leaderboard';
+
 import Loading from '@/components/Loading';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic'
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 
 const Leaderboard = () => {
+
   const LeaderboardComponent = dynamic(() => import('@/components/Leaderboard'), {
     loading: () => <Loading />,
     ssr: false,
@@ -24,7 +25,7 @@ const Leaderboard = () => {
 </p>
 
       </div>
-      <div className='w-full h-screen'>
+      <div className='w-full h-screen px-2'>
 
         <LeaderboardComponent />
       </div>

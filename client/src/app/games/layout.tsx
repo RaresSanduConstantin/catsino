@@ -1,5 +1,6 @@
-import Container from "@/components/Container";
-import Footer from "@/components/Footer";
+"use client"
+import { useSession } from 'next-auth/react';
+import { useRouter } from "next/navigation";
 
 
 export default function RootLayout({
@@ -7,10 +8,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // offset navbar height
+  
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if(status !== 'authenticated') {
+    router.push('/login')
+  }
+
   return (
-    <div>
-   {children}
+    <div className=" ">
+        {status === 'authenticated' && children}
     </div>
   );
 }
