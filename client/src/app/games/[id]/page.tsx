@@ -1,10 +1,32 @@
 "use client"
+import { useSession } from 'next-auth/react';
 import React, { useState, useEffect, useRef } from 'react';
 
 const GamePage = () => {
   const [active, setActive] = useState(false);
   const [results, setResults] = useState(["🍒", "🍒", "🍒"]);
   const slotsRef = useRef([null, null, null]);
+  const { data: session, status  } = useSession();
+
+  const [score, setScore] = useState(0);
+
+  const fetchUserScore = async () => {
+    const res = await fetch(`/api/users/${session?.user?.email}`);
+    if (res.ok) {
+        const data = await res.json();
+        setScore(data.score);  // Assuming the API returns an object with a 'score' property
+    } else {
+        console.error('Failed to fetch user score');
+    }
+};
+
+
+useEffect(() => {
+  if (status === 'authenticated') {
+      fetchUserScore();
+  }
+}, [status]);
+
 
   useEffect(() => {
     if (active) {
@@ -20,9 +42,44 @@ const GamePage = () => {
         timers.forEach(timer => clearInterval(timer));
         setResults(["🐱", "🐱", "🐱"]);
         setActive(false);
+        updateScore();
       }, 2000);
     }
   }, [active]);
+
+
+  const updateScore = async () => {
+    setScore(prevScore => {
+        const multipliers = [1, 2, 3];
+        const randomMultiplier = multipliers[Math.floor(Math.random() * multipliers.length)];
+        const newScore = prevScore + (prevScore * randomMultiplier);
+
+        updateScoreAPI(newScore);
+
+        return newScore;
+    });
+};
+
+const updateScoreAPI = async (newScore: number) => {
+  if (!session?.user?.email) {
+      console.error('User email is not available');
+      return;
+  }
+
+  const response = await fetch('/api/update-score', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: session.user.email, score: newScore })
+  });
+
+  if (!response.ok) {
+      console.error('Failed to update score');
+  } else {
+      console.log('Score updated successfully');
+  }
+};
 
   const getRandomSlotValue = () => {
     const values = ["🍒", "🍋", "🍊", "🍉", "🍇", "⭐", "🐱"];
@@ -54,6 +111,9 @@ const GamePage = () => {
         >
           {active ? "Spinning..." : "Win"}
         </button>
+        <div className='text-center bg-slate-600 p-5 rounded-xl'>
+          Score: <span className='bg-yellow-500 p-2 rounded-lg'>${score}</span> 
+        </div>
         </div>
     </div>
   );

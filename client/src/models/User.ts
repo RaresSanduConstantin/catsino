@@ -8,6 +8,7 @@ export interface UserDocument {
     image: string;
     createdAt: Date;
     updatedAt: Date;
+    score: number;
   }
 
   const UserSchema = new Schema<UserDocument>({
@@ -27,6 +28,14 @@ export interface UserDocument {
     username: {
       type: String,
       required: [true, "Name is required"]
+    },
+    score: {
+      type: Number,
+      default: 100
+    },
+    image: {
+      type: String,
+      default: 'https://cdn2.thecatapi.com/images/9at.jpg'
     }
   },
   {
