@@ -7,7 +7,7 @@ const port = 3001;
 app.use(cors())
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000', 'https://catsino-alpha.vercel.app'],
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
@@ -45,7 +45,7 @@ app.get('/users', cors(corsOptions), (req, res) => {
 
 
 // Photos route
-app.get('/photos', cors(), (req, res) => {
+app.get('/photos', cors(corsOptions), (req, res) => {
   const limit = parseInt(req.query.limit, 10) || 1000; // Default limit is 1000 if not specified
 
   axios.get('https://jsonplaceholder.typicode.com/photos')
