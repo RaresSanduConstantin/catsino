@@ -26,7 +26,7 @@ const GameList = () => {
     useEffect(() => {
         const fetchGames = async () => {
             try {
-                const response = await fetch('http://localhost:3001/photos?limit=2000');
+                const response = await fetch('https://catsino-backend-kciqjixkwa-ey.a.run.app/photos?limit=2000');
                 const data = await response.json();
                 setGames(data);
             } catch (error) {

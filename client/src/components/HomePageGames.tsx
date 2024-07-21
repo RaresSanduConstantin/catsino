@@ -20,7 +20,7 @@ const HomePageGames = () => {
         // Fetch images when component mounts
         const fetchImages = async () => {
             try {
-                const response = await fetch('http://localhost:3001/photos?limit=10');
+                const response = await fetch('https://catsino-backend-kciqjixkwa-ey.a.run.app/photos?limit=10');
                 const data = await response.json();
                 console.log('data', data)
                 setImages(data); // Set fetched images to state

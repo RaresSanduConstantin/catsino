@@ -25,7 +25,7 @@ const LeaderboardComponent = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:3001/users');
+        const response = await fetch('https://catsino-backend-kciqjixkwa-ey.a.run.app/users');
         const data = await response.json();
         setUsers(data);
       } catch (error) {
