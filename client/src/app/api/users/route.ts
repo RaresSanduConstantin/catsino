@@ -13,6 +13,9 @@ export async function GET(request: NextRequest) {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',
+                'Cache-Control': 'no-cache, no-store, must-revalidate',  // Prevents caching of the response
+                'Pragma': 'no-cache',  // For compatibility with HTTP/1.0 caches
+                'Expires': '0'  // Proxies older caches
             },
         });
     } catch (error) {
