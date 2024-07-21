@@ -9,7 +9,7 @@ export default function RootLayout({
 }) {
   // offset navbar height
   return (
-    <div className="bg-yellow-500 ">
+    <div className="">
         {children}
     </div>
   );

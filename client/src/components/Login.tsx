@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
+import { Cat } from "lucide-react";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -50,7 +51,11 @@ export function LoginComponent() {
   return (
     <div className="flex flex-col w-full items-center justify-center min-h-screen ">
       <Form {...form} >
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-3xl p-8 space-y-6 bg-white bg-opacity-10 rounded shadow-md">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-3xl  pt-3 pb-10 px-20 space-y-6 bg-white bg-opacity-10 rounded shadow-md">
+        <p className='text-yellow-500 flex flex-col items-center justify-center'>
+                        CATSINO
+                        <Cat />
+                    </p>
         <p className="text-3xl text-center">Login into your account</p>
           <FormField
             control={form.control}
@@ -86,8 +91,8 @@ export function LoginComponent() {
           />
           <Button type="submit" className="w-full bg-yellow-500">Log In</Button>
         </form>
-        <div className="text-center">
-          <Link href="/signup" className="text-blue-600 hover:underline">
+        <div className="text-center pt-5">
+          <Link href="/signup" className=" hover:underline">
             If you don't have an account, create one
           </Link>
         </div>

@@ -1,5 +1,6 @@
+"use client"
+import React, { useState, useEffect } from "react";
 import { Clover, Dices, Heart, Medal } from "lucide-react";
-import React from "react";
 import Image from "next/image";
 
 import { Card, CardContent } from "@/components/ui/card"
@@ -13,6 +14,23 @@ import {
 import Link from "next/link";
 
 const HomePageGames = () => {
+    const [images, setImages] = useState([]); // State to store images
+
+    useEffect(() => {
+        // Fetch images when component mounts
+        const fetchImages = async () => {
+            try {
+                const response = await fetch('http://localhost:3001/photos?limit=10');
+                const data = await response.json();
+                console.log('data', data)
+                setImages(data); // Set fetched images to state
+            } catch (error) {
+                console.error("Failed to fetch images:", error);
+            }
+        };
+        fetchImages();
+    }, []);
+    
     const carouselData = [
         {
             title: "Recommended",
@@ -38,7 +56,7 @@ const HomePageGames = () => {
 
     const CarouselSection = ({ title, icon, bgColor }: any) => (
         <div className="flex flex-col">
-            <p className="text-4xl font-semibold flex items-center gap-5">{icon}{title}</p>
+            <Link href={'/games'} className="text-4xl font-semibold flex items-center gap-5">{icon}{title}</Link>
             <Carousel
                 opts={{
                     align: "start",
@@ -46,18 +64,21 @@ const HomePageGames = () => {
                 className="w-full pt-5"
             >
                 <CarouselContent>
-                    {Array.from({ length: 10 }).map((_, index) => (
+                    {images.map((img: any, index) => (
                         <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/5">
                             <div className="p-1 relative group">
                                 <Card className="relative overflow-hidden rounded-lg shadow-lg">
-                                    <img
-                                        src="https://via.placeholder.com/400x300/92c952"
-                                        alt="game"
+                                    <Image
+                                        src={img.thumbnailUrl}
+                                        alt={`Image ${index}`}
+                                        width={400}
+                                        height={400}
                                         className="w-full h-full object-cover"
+                                        unoptimized={true} // use unoptimized if your server doesn't support optimized image delivery
                                     />
                                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                                         <Link
-                                            href='/signup'
+                                            href={`/games/${index}`}
                                             className='text-lg font-semibold text-white no-underline'
                                         >
                                             <button className='border bg-gradient-to-t from-yellow-400 via-yellow-500 to-yellow-600 hover:bg-transparent border-yellow-500 font-bold rounded-full px-10 py-2 text-white'>
@@ -75,6 +96,7 @@ const HomePageGames = () => {
             </Carousel>
         </div>
     );
+
 
     return (
         <div className="flex flex-col gap-10 mt-10 container">

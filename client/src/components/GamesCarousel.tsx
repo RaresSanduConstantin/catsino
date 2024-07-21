@@ -9,6 +9,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import { type CarouselApi } from "@/components/ui/carousel"
+import Link from "next/link";
 
 const GamesCarousel = () => {
     const basePath = '/carousel';
@@ -44,7 +45,7 @@ const GamesCarousel = () => {
             } else {
                 api.scrollPrev();
             }
-        }, 5000);
+        }, 3000);
     
         return () => {
             clearInterval(interval);
@@ -53,7 +54,7 @@ const GamesCarousel = () => {
     }, [api, scrollForward, images.length]);
 
     return (
-        <div className="w-full">
+        <div className="w-full bg-yellow-500">
             <Carousel className="w-full" setApi={setApi}>
                 <CarouselContent>
                     {images.map((imgSrc, index) => (
@@ -65,6 +66,13 @@ const GamesCarousel = () => {
                                         alt={`Carousel Image ${index + 1}`}
                                         className="w-full h-full object-cover"
                                     />
+                                                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <Link href={`/games/${index}`}>
+                        <button className='border bg-gradient-to-t from-yellow-400 via-yellow-500 to-yellow-600 hover:bg-transparent border-yellow-500 font-bold rounded-full px-10 py-5 text-white'>
+                            Play Now
+                        </button>
+                    </Link>
+                </div>
                                 </Card>
                             </div>
                         </CarouselItem>
