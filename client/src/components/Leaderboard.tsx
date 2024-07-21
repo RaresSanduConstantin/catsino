@@ -61,7 +61,7 @@ const LeaderboardComponent = () => {
           const backgroundClass = index === 0 ? 'bg-yellow-300'
                                 : index === 1 ? 'bg-gray-500'
                                 : index === 2 ? 'bg-orange-300' : '';
-          const catImage = user?.catImage ? user.catImage.url : 'https://cdn2.thecatapi.com/images/a44.jpg';
+          const catImage = user?.catImage ? user.catImage.url : `https://cdn2.thecatapi.com/images/a4${index}.jpg`;
           const userName = user.name ? user.name : user?.username;
           console.log(user)
           return (

@@ -58,7 +58,7 @@ const Navbar =  () => {
                     </span>
                 </div>
 
-                <div className='absolute right-10 lg:hidden'>
+                <div className='absolute right-10 lg:hidden animate-pulsebar'>
                 {/* <BurgerToggle /> */}
                     <MobileMenu />
                 </div>

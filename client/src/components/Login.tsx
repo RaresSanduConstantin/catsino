@@ -106,7 +106,7 @@ export function LoginComponent() {
                     <Button type="submit" className="w-full bg-yellow-500">Log In</Button>
                 </form>
                 <div className="text-center pt-5">
-                    <Link href="/signup" className=" hover:underline">
+                    <Link href="/signup" className="text-blue-400 underline">
                         If you don&apos;t have an account, create one
                     </Link>
                 </div>

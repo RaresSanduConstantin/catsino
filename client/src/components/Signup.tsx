@@ -146,7 +146,7 @@ export function SignupComponent() {
                     <Button type="submit" className="w-full bg-yellow-500">Sign Up</Button>
                 </form>
                 <div className="text-center pt-5">
-                    <Link href="/login">
+                    <Link href="/login" className="text-blue-400 underline">
                         Already have an account? Log in
                     </Link>
                 </div>
