@@ -14,16 +14,14 @@ import {
 import Link from "next/link";
 
 const HomePageGames = () => {
-    const [images, setImages] = useState([]); // State to store images
+    const [images, setImages] = useState([]);
 
     useEffect(() => {
-        // Fetch images when component mounts
         const fetchImages = async () => {
             try {
                 const response = await fetch('https://catsino-backend-kciqjixkwa-ey.a.run.app/photos?limit=10');
                 const data = await response.json();
-                console.log('data', data)
-                setImages(data); // Set fetched images to state
+                setImages(data);
             } catch (error) {
                 console.error("Failed to fetch images:", error);
             }
@@ -40,7 +38,7 @@ const HomePageGames = () => {
         {
             title: "Win Big Prizes",
             icon: <Clover size={30} color="green" />,
-            bgColor: "green-500"
+            bgColor: "yellow-500"
         },
         {
             title: "New Games",
@@ -56,7 +54,7 @@ const HomePageGames = () => {
 
     const CarouselSection = ({ title, icon, bgColor }: any) => (
         <div className="flex flex-col">
-            <Link href={'/games'} className="text-4xl font-semibold flex items-center gap-5">{icon}{title}</Link>
+            <Link href={'/games'} className="text-xl md:text-4xl font-semibold flex items-center gap-5">{icon}{title}</Link>
             <Carousel
                 opts={{
                     align: "start",
@@ -74,7 +72,7 @@ const HomePageGames = () => {
                                         width={400}
                                         height={400}
                                         className="w-full h-full object-cover"
-                                        unoptimized={true} // use unoptimized if your server doesn't support optimized image delivery
+                                        unoptimized={true}
                                     />
                                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                                         <Link

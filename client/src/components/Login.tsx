@@ -46,7 +46,6 @@ export function LoginComponent() {
     });
 
     const onSubmit = async (formData: z.infer<typeof FormSchema>) => {
-        console.log(formData)
         const res = await signIn("credentials", {
             email: formData.email,
             password: formData.password,

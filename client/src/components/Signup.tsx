@@ -45,7 +45,6 @@ export function SignupComponent() {
 
 
     const onSubmit = async (formData: z.infer<typeof FormSchema>) => {
-        console.log('formData', formData);
         const r = await register({
             email: formData.email,
             password: formData.password,
@@ -53,7 +52,6 @@ export function SignupComponent() {
         });
         ref.current?.reset();
         if (r?.error) {
-            console.log(r?.error);
             form.setError("email", {
                 type: "manual",
                 message: r?.error,

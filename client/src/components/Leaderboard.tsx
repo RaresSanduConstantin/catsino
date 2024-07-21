@@ -36,10 +36,8 @@ const LeaderboardComponent = () => {
     fetchUsers();
   }, []);
 
-  console.log(users)
-
   return (
-    <div className="bg-slate-100 shadow-md rounded-md w-full max-w-3xl mx-auto mt-10 h-full">
+    <div className="bg-slate-100 shadow-md rounded-md w-full max-w-3xl mx-auto mt-10">
       <ul className="divide-y divide-gray-200 w-full">
         {users.map((user, index) => {
           const backgroundClass = index === 0 ? 'bg-yellow-300'
@@ -54,7 +52,7 @@ const LeaderboardComponent = () => {
                   width={48} 
                   height={48} 
                   className="w-12 h-12 rounded-full object-cover mr-4" 
-                  src={user.catImage.url} // Use the cat image from the user object
+                  src={user.catImage.url}
                   alt="Cat"
                   unoptimized={true}
                 />

@@ -19,7 +19,7 @@ const Hero = () => {
         Unleash your luck and get your paws on jackpot joy—where every spin could turn into a purrfect win!
     </p>
                     <Link href="/games" className="pt-10">
-                        <button className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white text-3xl font-semibold py-4 px-6 rounded-full hover:scale-110 transition-transform duration-300 ease-in-out">
+                        <button className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white text-lg md:text-3xl font-semibold py-4 px-6 rounded-full hover:scale-110 transition-transform duration-300 ease-in-out">
                             Start Your Adventure
                         </button>
                     </Link>
