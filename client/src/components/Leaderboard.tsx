@@ -26,20 +26,16 @@ const LeaderboardComponent = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        // Fetch data from the local Next.js API
         const localResponse = await fetch('/api/users', {
           cache: 'no-cache'
         });
         const localData = await localResponse.json();
   
-        // Fetch data from the external API
         const externalResponse = await fetch('https://catsino-backend-kciqjixkwa-ey.a.run.app/users');
         const externalData = await externalResponse.json();
   
-        // Combine the data from both APIs
         const combinedData = [...localData, ...externalData];
   
-        // Sort combined data by score in descending order and take the top 10
         const sortedUsers = combinedData
           .sort((a, b) => b.score - a.score)
           .slice(0, 10);
