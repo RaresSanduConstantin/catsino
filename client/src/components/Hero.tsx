@@ -12,7 +12,7 @@ const Hero = () => {
                     <h1 className="text-5xl text-center font-bold text-yellow-300 animate-pulse">Step Into the Feline Fantasy of CATSINO</h1>
                     <p className="text-white text-center text-lg md:w-2/3 bg-opacity-90 
                  p-4 rounded-xl shadow-xl mt-5">
-        Dare to roll the dice? Scratch your way to victory? It's not just playtime—it's your chance to claim the throne at Catsino!
+        Dare to roll the dice? Scratch your way to victory? It&apos;s not just playtime—it&apos;s your chance to claim the throne at Catsino!
     </p>
 
     <p className="text-white text-center text-lg md:w-2/3 bg-opacity-20 bg-gray-200 p-4 rounded-xl shadow-2xl">

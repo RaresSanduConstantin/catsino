@@ -66,7 +66,7 @@ const GamesCarousel = () => {
                                         alt={`Carousel Image ${index + 1}`}
                                         className="w-full h-full object-cover"
                                     />
-                                                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                     <Link href={`/games/${index}`}>
                         <button className='border bg-gradient-to-t from-yellow-400 via-yellow-500 to-yellow-600 hover:bg-transparent border-yellow-500 font-bold rounded-full px-10 py-5 text-white'>
                             Play Now

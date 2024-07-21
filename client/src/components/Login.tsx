@@ -108,7 +108,7 @@ export function LoginComponent() {
                 </form>
                 <div className="text-center pt-5">
                     <Link href="/signup" className=" hover:underline">
-                        If you don't have an account, create one
+                        If you don&apos;t have an account, create one
                     </Link>
                 </div>
             </Form>

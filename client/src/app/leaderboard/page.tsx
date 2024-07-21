@@ -21,7 +21,7 @@ const Leaderboard = () => {
       <div>
       <h1 className='text-4xl font-bold text-center my-4'>Leaderboard</h1>
 <p className='text-lg text-gray-600 max-w-7xl mx-auto text-center mt-2'>
-    Welcome to our competitive arena where excellence and achievement are not just recognized but celebrated. Scroll through the leaderboard to see who's topping the charts with their remarkable skills. From seasoned champions to emerging contenders, each participant shines here, making their mark as they vie for supremacy. Join us in celebrating the thrill of competition and the spirit of victory!
+    Welcome to our competitive arena where excellence and achievement are not just recognized but celebrated. Scroll through the leaderboard to see who&apos;s topping the charts with their remarkable skills. From seasoned champions to emerging contenders, each participant shines here, making their mark as they vie for supremacy. Join us in celebrating the thrill of competition and the spirit of victory!
 </p>
 
       </div>
