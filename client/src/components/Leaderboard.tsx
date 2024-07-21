@@ -27,7 +27,9 @@ const LeaderboardComponent = () => {
     const fetchUsers = async () => {
       try {
         // Fetch data from the local Next.js API
-        const localResponse = await fetch('/api/users');
+        const localResponse = await fetch('/api/users', {
+          cache: 'no-cache'
+        });
         const localData = await localResponse.json();
   
         // Fetch data from the external API
