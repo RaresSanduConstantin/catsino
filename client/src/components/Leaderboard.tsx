@@ -39,7 +39,7 @@ const LeaderboardComponent = () => {
   console.log(users)
 
   return (
-    <div className="bg-slate-100 shadow-md rounded-md w-full max-w-3xl mx-auto mt-10">
+    <div className="bg-slate-100 shadow-md rounded-md w-full max-w-3xl mx-auto mt-10 h-full">
       <ul className="divide-y divide-gray-200 w-full">
         {users.map((user, index) => {
           const backgroundClass = index === 0 ? 'bg-yellow-300'

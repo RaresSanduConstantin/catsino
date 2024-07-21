@@ -25,7 +25,7 @@ const Leaderboard = () => {
 </p>
 
       </div>
-      <div className='w-full h-screen px-2'>
+      <div className='w-full h-full px-2'>
 
         <LeaderboardComponent />
       </div>
